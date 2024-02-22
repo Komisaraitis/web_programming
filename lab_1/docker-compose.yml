@@ -9,3 +9,6 @@ web:
     - php
 php:
   image: php:8-fpm
+  volumes:
+    - ./code:/code
+
