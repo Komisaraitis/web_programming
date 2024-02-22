@@ -3,4 +3,9 @@ web:
   ports:
     - "8080:80"
   volumes:
-   - ./code:/code
+    - ./code:/code
+    - ./site.conf:/etc/nginx/conf.d/site.conf
+  links:
+    - php
+php:
+  image: php:8-fpm
