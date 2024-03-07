@@ -380,3 +380,33 @@ for ($i = 1; $i <= 20; $i++) {
     }
     echo "\n";
 }
+
+/** Комбинация функций */
+
+// среднее арифметическое
+$arr = [1, 2, 3, 4, 5];
+$average = array_sum($arr) / count($arr);
+echo "\n", $average;
+
+//сумма чисел от 1 до 100
+$sum = array_sum(range(1, 100));
+echo "\n", $sum;
+
+// массив с квадратными корнями
+$arr = [1, 4, 9, 16, 25];
+$sqrtArr = array_map('sqrt', $arr);
+echo "\n";
+print_r($sqrtArr);
+
+// Заполнила массив числами от 1 до 26 так, чтобы ключами этих чисел были буквы английского алфавита: ['a'=>1, 'b'=>2...]
+$key = range('a', 'z');
+$value = range(1, 26);
+$result = array_combine($key, $value);
+echo "\n";
+print_r($result);
+
+// сумма пар чисел
+$str = '1234567890';
+$a = str_split($str, 2);
+$sum = array_sum($a);
+echo "\n", $sum;
