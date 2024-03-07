@@ -370,3 +370,13 @@ $arr = [1,2,3];
 if (count($arr) == 3) {
     echo "\n", array_sum($arr);
 }
+
+/** 19) Циклы */
+
+echo "\n";
+for ($i = 1; $i <= 20; $i++) {
+    for ($j = 1; $j <= $i; $j++) {
+        echo "x";
+    }
+    echo "\n";
+}
