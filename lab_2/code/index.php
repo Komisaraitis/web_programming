@@ -175,4 +175,15 @@ foreach ($arr as $value){
 
 echo $count;
 
+/** 15)Функции*/
+
+//функция, которая печатает строку и возвращает числовое значение
+function printStringReturnNumber(){
+    echo "\n Hi \n";
+    return 8;
+}
+
+$my_num = printStringReturnNumber();
+
+echo $my_num;
 
