@@ -180,7 +180,7 @@ echo $count;
 //функция, которая печатает строку и возвращает числовое значение
 function printStringReturnNumber(){
     echo "\n Hi \n";
-    return 8;
+    return 9;
 }
 
 $my_num = printStringReturnNumber();
