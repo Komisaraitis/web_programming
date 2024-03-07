@@ -187,3 +187,53 @@ $my_num = printStringReturnNumber();
 
 echo $my_num;
 
+/** 16)Функции*/
+
+//функция, оторая принимает строковый параметр и возвращает эту строку, дополненную восклицательным знаком.
+function increaseEnthusiasm($s){
+    return $s.'!';
+}
+
+echo increaseEnthusiasm("\nWow");
+
+//функция, которая принимает строковый параметр и возвращает эту строку, повторенную три раза
+function  repeatThreeTimes($s){
+    return $s.$s.$s;
+}
+
+echo "\n", repeatThreeTimes("Cool");
+
+echo "\n", increaseEnthusiasm(repeatThreeTimes("Dasha"));
+
+//функция, которая обрезает строку
+
+function cut($str, $num = 10) {
+    return substr($str, 0, $num);
+}
+
+echo cut("oireafcmaeuh");
+
+//функуция, которая рекурсивно выводит элементы массива
+
+function printArrayRecursively($arr, $i = 0) {
+    if ($i < count($arr)) {
+        echo $arr[$i] . "\n";
+        printArrayRecursively($arr, $i + 1);
+    }
+}
+
+printArrayRecursively([1,2,5,4,8]);
+
+//Функция, которая складывает цифры числа, пока сумма не станет однозначным числом
+function sumDig($num) {
+    $sum = array_sum(str_split($num));
+
+    if ($sum > 9) {
+        return sumDig($sum);
+    } else {
+        return $sum;
+    }
+}
+$num = 146;
+echo "\nЧисло: ", $num, "\nОднозначная сумма ", sumDig($num);
+
