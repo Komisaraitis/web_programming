@@ -237,3 +237,81 @@ function sumDig($num) {
 $num = 146;
 echo "\nЧисло: ", $num, "\nОднозначная сумма ", sumDig($num);
 
+/** 17) Массивы */
+
+//функция, которая заполняет массив следующим образом: в первый элемент записывает 'x', во второй 'xx', в третий 'xxx' и так далее
+
+function x($count)
+{
+    $res = ['x'];
+    $i=1;
+    while ($i < $count) {
+        $res[$i] = $res[$i-1].'x';
+        $i++;
+    }
+    return $res;
+}
+
+print_r (x(6));
+
+//функция, которая будет заполнять массив заданными значениями
+function arrayFill($value, $elem) {
+    $arr = [];
+    for ($i = 0; $i < $elem; $i++) {
+        $arr[] = $value;
+    }
+    return $arr;
+}
+
+$arr = arrayFill('x', 5);
+print_r($arr);
+
+//сумма элементов массива
+
+$num = [[1, 2, 3], [4, 5], [6]];
+$sum = 0;
+foreach ($num as $in) {
+    $sum += array_sum($in);
+}
+echo "\n", $sum;
+
+//С помощью двух циклов создаю массив [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+$arr = [];
+$value = 1;
+for ($i = 0; $i < 3; $i++) {
+    for ($j = 0; $j < 3; $j++) {
+        $arr[$i][$j] = $value;
+        $value++;
+    }
+}
+print_r($arr);
+
+//Умножила первый элемент массива на второй, а третий элемент на четвертый. Результаты сложила
+
+$arr = [2, 5, 3, 9];
+$res = ($arr[0] * $arr[1]) + ($arr[2] * $arr[3]);
+echo "\n", $res;
+
+// фамилия, имя и отчество
+
+$user = [ 'name' => 'Daria', 'surname' => 'Komisaraitis', 'patronymic' => 'Valerievna'];
+echo "\n", $user['surname'], ' ', $user['name'], ' ', $user['patronymic'];
+
+// год-месяц-день
+
+$date = ['year' => '2024', 'month' => '03', 'day' => '07'];
+echo "\n", $date['year'], '-', $date['month'], '-',$date['day'];
+
+//количество элементов в массиве
+
+$arr = ['a', 'b', 'c', 'd', 'e'];
+echo "\n",count($arr);
+
+// последний и предпоследний элементы массива
+
+$arr1 = ['a', 'b', 'c', 'd', 'e'];
+
+echo "\n", $arr1[count($arr1) - 1];
+echo "\n", $arr1[count($arr1) - 2];
+
