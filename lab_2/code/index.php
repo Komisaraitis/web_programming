@@ -315,3 +315,58 @@ $arr1 = ['a', 'b', 'c', 'd', 'e'];
 echo "\n", $arr1[count($arr1) - 1];
 echo "\n", $arr1[count($arr1) - 2];
 
+/** 18)Конструкция if else */
+
+//Функция, которая параметрами принимает 2 числа. Если их сумма больше 10 - пусть функция вернет true, а если нет - false.
+
+function checkSum($num1, $num2) {
+    $sum = $num1 + $num2;
+    if ($sum > 10) {
+        echo "\nСумма >10";
+        return true;
+    }
+    else {
+        echo "\nСумма <=10";
+        return false;
+    }
+}
+
+echo "\n", checkSum(1, 5);
+
+//функция, которая параметрами принимает 2 числа. Если эти числа равны - пусть функция вернет true, а если не равны - false
+
+function checkEqual($num1, $num2) {
+    if ($num1 == $num2) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+echo "\n", checkEqual(4, 4);
+
+//код в краткой форме
+
+$test = 0;
+if ($test == 0) echo "\n", 'верно';
+
+//число меньше 10 или больше 99?
+
+$age = 65;
+if ($age < 10 || $age > 99) {
+    echo "\nЧисло меньше 10 или больше 99";
+}
+else {
+    $sum = array_sum(str_split($age));
+    if ($sum <= 9) {
+        echo "\nСумма цифр однозначна";
+    } else {
+        echo "\nСумма цифр двузначна";
+    }
+}
+
+$arr = [1,2,3];
+if (count($arr) == 3) {
+    echo "\n", array_sum($arr);
+}
