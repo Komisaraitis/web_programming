@@ -42,3 +42,7 @@ $days_per_language = $days / $num_languages; //сколько дней в сре
 
 echo "\n", $days_per_language;
 
+/** 12) Степень*/
+
+echo "\n", 8**2; // возведение в квардрат
+
