@@ -1,0 +1,10 @@
+{
+    "name": "dasha/code",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Dasha\\Code\\": "src/"
+        }
+    },
+    "require": {}
+}
