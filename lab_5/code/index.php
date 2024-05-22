@@ -5,12 +5,12 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>lab4</title>
-    <link rel="stylesheet" type="text/css" href="tableStyle.css">
+    <title>lab5</title>
+    <link rel="stylesheet" type="text/css" href="tableView.css">
 </head>
 <body>
 <div id="form">
-    <form method="post" action="save.php">
+    <form method="post">
         <label for="email" >Email</label>
         <input type="email" name="email" required>
         <label for="categories">Category</label>
@@ -22,10 +22,23 @@
         </select> <br>
         <label for="title" >Title</label>
         <input type="text" name="title" required> <br>
-        <label for="text" >Text</label>
+        <label for="text" >Description</label>
         <textarea rows="10" cols="50" name="text"></textarea> <br>
         <input type="submit" value="Save">
+        <?php
+        if (false === isset($_POST["email"], $_POST["categories"], $_POST["title"], $_POST["text"])) exit();
 
+        $title = $_POST["title"];
+        $description = $_POST["text"];
+        $email = $_POST["email"];
+        $category = $_POST["categories"];
+
+        /*Подключение к серверу*/
+        $mysqli = new mysqli('db', 'root', 'helloworld', 'web');
+        /*Сохраняем данный в базу данных*/
+        $mysqli->query("INSERT INTO ad (email, title, description, category) VALUES ('$email', '$title', '$description', '$category')");
+        $mysqli->close();
+        ?>
     </form>
 </div>
 <div id="table">
@@ -33,38 +46,28 @@
         <thead>
         <th>Category</th>
         <th>Title</th>
-        <th>Email</th>
         <th>Description</th>
+        <th>Email</th>
         </thead>
         <tbody>
         <?php
-        require 'vendor/autoload.php';
-        error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
+        /*Подключение к серверу*/
+        $mysqli = new mysqli('db', 'root', 'helloworld', 'web');
 
-        $client = new \Google_Client();
-        $client->setApplicationName('lab4');
-        $client->setScopes(['https://www.googleapis.com/auth/spreadsheets']);
-        $client->setAccessType('offline');
-        $client->setAuthConfig('winged-math-422013-f2-2a46a5bdfeb0.json');
-
-        $service = new \Google_Service_Sheets($client);
-
-        $spreadsheetId = '1P6u7dIY8mc5XVH5LHhbdqXE98zhQcTrDFVvPJx3HShg';
-        $spreadsheet = $service->spreadsheets->get($spreadsheetId);
-        $sheets = $spreadsheet->getSheets();
-        foreach ($sheets as $sheet) {
-            $sheetTitle = $sheet->getProperties()->getTitle();
-            $range = $sheetTitle;
-
-            $response = $service->spreadsheets_values->get($spreadsheetId, $range);
-            $values = $response->getValues();
-            if (!empty($values) && count($values) >= 4) {
-                $category = htmlspecialchars($values[0][0]);
-                $title = htmlspecialchars($values[1][0]);
-                $email = htmlspecialchars($values[2][0]);
-                $description = htmlspecialchars($values[3][0]);
-
-            }
+        /*Заполняю табличку на сайте*/
+        if($result = $mysqli->query('SELECT * FROM ad')){ // условие, которое выыполнится, если считалось с базы данных
+        while ($row = $result->fetch_assoc()){
+        $category = $row['category'];
+        $title = $row['title'];
+        $description = $row['description'];
+        $email = $row['email'];
+        echo "<tr>";
+            echo "<td>$category</td>";
+            echo "<td>$title</td>";
+            echo "<td>$description</td>";
+            echo "<td>$email</td>";
+            echo "</tr>";
+        }
         }
         ?>
         </tbody>
